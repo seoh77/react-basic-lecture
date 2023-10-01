@@ -1,6 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { DiaryDispatchContext } from "./App";
 
-const DiaryEditor = ({ onCreate }) => {
+const DiaryEditor = () => {
+  const { onCreate } = useContext(DiaryDispatchContext);
+
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -20,7 +23,6 @@ const DiaryEditor = ({ onCreate }) => {
   const handleSubmit = () => {
     if (state.author.length < 1) {
       authorInput.current.focus();
-      //   alert("작성자는 최소 1글자 이상 입력해주세요");
       return;
     }
     if (state.content.length < 5) {
