@@ -18,7 +18,8 @@
       // React.useState()를 출력해보면 [초기값, data의 값을 바꿀 수 있는 함수]가 들어가있는 배열을 받을 수 있음
       const [counter, setCounter] = React.useState(0); // useState(초기값)
       const onClick = () => {
-        setCounter(counter + 1);
+        // setCounter(counter + 1);
+        setCounter((current) => current + 1);
       };
 
       return (
