@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -7,20 +8,43 @@
   <body>
     <div id="root"></div>
   </body>
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-    <script>
-        const root = document.getElementById("root")
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    // JSX를 사용
+    const Title = (
+      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        Hello I'm title
+      </h3>
+    );
+
+    const Button = (
+      <button
+        style={{ backgroundColor: "tomato" }}
+        onClick={() => console.log("I'm Click")}
+      >
+        Click me
+      </button>
+    );
+
+    // JSX를 사용하지 않고 React 요소 만들기
+    /*
         const h3 = React.createElement("h3", {
             onMouseEnter: () => console.log("mouse enter")
         }, "Hello I'm span")
+     */
+    /*
         const btn = React.createElement("button", {
             onClick: () => console.log("I'm Click"),
             style: {
                 backgroundColor : "tomato",
             }
         }, "Click me")
-        const container = React.createElement("div", null, [h3, btn])
-        ReactDOM.render(container, root)
-    </script>
+    */
+    const container = React.createElement("div", null, [Title, Button]);
+    ReactDOM.render(container, root);
+  </script>
 </html>
