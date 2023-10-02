@@ -13,26 +13,22 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
 
-    function countUp() {
-      counter += 1;
-      reRender();
-    }
+    function App() {
+      // React.useState()를 출력해보면 [초기값, data의 값을 바꿀 수 있는 함수]가 들어가있는 배열을 받을 수 있음
+      const [counter, setCounter] = React.useState(0); // useState(초기값)
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
 
-    function reRender() {
-      ReactDOM.render(<Container />, root);
-    }
-
-    function Container() {
       return (
         <div>
           <h3>Total Clicks: {counter}</h3>
-          <button onClick={countUp}>Click me</button>
+          <button onClick={onClick}>Click me</button>
         </div>
       );
     }
 
-    reRender();
+    ReactDOM.render(<App />, root);
   </script>
 </html>
