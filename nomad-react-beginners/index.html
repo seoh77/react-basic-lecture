@@ -13,47 +13,26 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
+    let counter = 0;
 
-    // JSX를 사용
-    const Title = () => (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-        Hello I'm title
-      </h3>
-    );
+    function countUp() {
+      counter += 1;
+      reRender();
+    }
 
-    const Button = () => (
-      <button
-        style={{ backgroundColor: "tomato" }}
-        onClick={() => console.log("I'm Click")}
-      >
-        Click me
-      </button>
-    );
+    function reRender() {
+      ReactDOM.render(<Container />, root);
+    }
 
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
+    function Container() {
+      return (
+        <div>
+          <h3>Total Clicks: {counter}</h3>
+          <button onClick={countUp}>Click me</button>
+        </div>
+      );
+    }
 
-    ReactDOM.render(<Container />, root);
-
-    // JSX를 사용하지 않고 React 요소 만들기
-    /*
-        const h3 = React.createElement("h3", {
-            onMouseEnter: () => console.log("mouse enter")
-        }, "Hello I'm span")
-     */
-    /*
-        const btn = React.createElement("button", {
-            onClick: () => console.log("I'm Click"),
-            style: {
-                backgroundColor : "tomato",
-            }
-        }, "Click me")
-    */
-    // const container = React.createElement("div", null, [Title, Button]);
-    // ReactDOM.render(container, root);
+    reRender();
   </script>
 </html>
