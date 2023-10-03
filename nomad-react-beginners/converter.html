@@ -27,6 +27,7 @@
 
       return (
         <div>
+          <h3>Minutes to Hours</h3>
           <div>
             <label htmlFor="minutes">Minutes</label>
             <input
@@ -57,8 +58,50 @@
       );
     }
 
-    function KmToMiles() {
-      return <h3>Km to Miles</h3>;
+    function KmToCm() {
+      const [amount, setAmount] = React.useState(0);
+      const [inverted, setInverted] = React.useState(false);
+
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      const onInvert = () => {
+        reset();
+        setInverted((current) => !current);
+      };
+
+      return (
+        <div>
+          <h3>Km to Cm</h3>
+          <div>
+            <label htmlFor="km">Km</label>
+            <input
+              value={inverted ? amount / 100000 : amount}
+              id="km"
+              placeholder="Km"
+              type="number"
+              onChange={onChange}
+              disabled={inverted}
+            />
+          </div>
+          <div>
+            <label htmlFor="cm">Cm</label>
+            <input
+              value={inverted ? amount : amount * 100000}
+              id="cm"
+              placeholder="Cm"
+              type="number"
+              onChange={onChange}
+              disabled={!inverted}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onInvert}>
+            {inverted ? "Turn back" : "Invert"}
+          </button>
+        </div>
+      );
     }
 
     function App() {
@@ -71,13 +114,13 @@
           <h1>Converter</h1>
           <select value={index} onChange={onSelect}>
             <option value="xx">Select your units</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">Km & Miles</option>
+            <option value="0">Minutes To Hours</option>
+            <option value="1">Km To Cm</option>
           </select>
           <hr />
           {index === "xx" ? "Please select your units" : null}
           {index === "0" ? <MinutesToHours /> : null}
-          {index === "1" ? <KmToMiles /> : null}
+          {index === "1" ? <KmToCm /> : null}
         </div>
       );
     }
