@@ -5,3 +5,5 @@
 => simple-diary
 
 ### 섹션6. React 실전 프로젝트 - 감정 일기장 만들기
+
+=> emotion-diary
